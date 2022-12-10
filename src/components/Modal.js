@@ -13,7 +13,7 @@ function Modal({ onClose, children, src }) {
 
     return ReactDOM.createPortal(
         <div>
-            <div onClick={onClose} className="fixed inset-0 bg-gray-300 opacity-80"></div>
+            <div onClick={onClose} className="fixed inset-0 bg-gray-900 opacity-80"></div>
             <div className="fixed inset-20 mx-[400px] flex justify-center ">
                 <img src={src} alt='' className='w-[400px] rounded-md' />
             </div>
