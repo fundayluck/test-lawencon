@@ -12,7 +12,6 @@ const Card = () => {
     console.log(movies);
 
     let content;
-
     if (isLoading) {
         content = <p>loading...</p>
     } else if (movies.Response === 'True') {
