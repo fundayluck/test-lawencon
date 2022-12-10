@@ -52,7 +52,7 @@ const AppPage = () => {
 
     return (
         <div className='flex flex-col items-center px-10 bg-[#222222]'>
-            <h1 className='font-bold text-[50px] mb-2 text-[#F3EFE0] underline'>Movie Collection</h1>
+            <h1 className='font-bold text-[50px] mb-2 text-[#F3EFE0] underline'>Batman Movie Collection's</h1>
             <input
                 className='p-2 mb-2 border-2'
                 placeholder='Search by title'
