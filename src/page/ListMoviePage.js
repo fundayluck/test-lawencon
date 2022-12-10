@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Card from '../components/Card'
+import Loader from '../components/Loader'
+
 
 const AppPage = () => {
-    const [title, setTitle] = useState('dragon')
+    const [title, setTitle] = useState('batman')
     const [movies, setMovies] = useState([])
     const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(false)
+    console.log(loading);
     useEffect(() => {
-        const fetch = async () => {
+        setTimeout(async () => {
             const response = await axios.get(`https://www.omdbapi.com?apikey=715289b&s=${title}&page=${page}`)
             if (response.data.Response === "True") {
-                setMovies(prev => [...prev, ...response.data.Search])
+                setMovies((prev) => {
+                    return [...prev, ...response.data.Search]
+                })
             } else if (response.data.Response === "False") {
                 setMovies(response.data)
             }
-        }
-        fetch()
+        }, 1500)
+        setLoading(false)
     }, [page, title])
 
 
@@ -25,11 +31,12 @@ const AppPage = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleScroll = async () => {
+    const handleScroll = () => {
         if (
             window.innerHeight + document.documentElement.scrollTop + 1 >=
             document.documentElement.scrollHeight
         ) {
+            setLoading(true)
             setPage((prev) => prev + 1);
         }
     };
@@ -43,6 +50,7 @@ const AppPage = () => {
                 onChange={(e) => setTitle(e.target.value)}
             /> */}
             <Card movies={movies} />
+            {loading && <Loader />}
         </div>
     )
 }

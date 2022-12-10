@@ -1,4 +1,5 @@
-const Card = ({ movies }) => {
+
+const Card = ({ movies, }) => {
     let content;
     console.log(movies);
     if (movies.Response === "False") {
@@ -24,7 +25,10 @@ const Card = ({ movies }) => {
         </div >
     }
 
-    return <div>{content}</div>
+    return <>
+        {content}
+    </>
+
 }
 
 export default Card
