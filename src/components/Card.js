@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 const Card = ({ movies, }) => {
     let content;
@@ -17,7 +18,13 @@ const Card = ({ movies, }) => {
                             <p className="text-[#F3EFE0] mb-4">
                                 {movie.Year}
                             </p>
-
+                            <NavLink to={`/detail/${movie.imdbID}`}>
+                                <button
+                                    type="button" class="text-white bg-[#22A39F] hover:bg-[#22A39F] focus:ring-4 focus:outline-none focus:ring-[#22A39F] dark:focus:ring-[#22A39F] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                >
+                                    Detail
+                                </button>
+                            </NavLink>
                         </div>
                     </div>
                 </div>
