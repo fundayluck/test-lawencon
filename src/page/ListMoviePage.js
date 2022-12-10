@@ -9,6 +9,7 @@ const AppPage = () => {
     const [movies, setMovies] = useState([])
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(false)
+
     console.log(loading);
     useEffect(() => {
         setTimeout(async () => {
@@ -40,6 +41,9 @@ const AppPage = () => {
             setPage((prev) => prev + 1);
         }
     };
+
+
+
     return (
         <div className='flex flex-col items-center px-5 bg-[#222222]'>
             <h1 className='font-bold text-[50px] mb-2 text-[#F3EFE0]'>Movie Collection</h1>

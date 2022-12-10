@@ -14,7 +14,10 @@ const DetailPage = () => {
         fetch()
     }, [id])
     return (
-        <div>halo</div>
+        <div className='flex justify-center'>
+            <div>{ }</div>
+            <img src={detail.Poster} alt={detail.Poster} width={400} />
+        </div>
     )
 }
 
