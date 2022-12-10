@@ -1,14 +1,12 @@
 import React from 'react'
-import Card from './components/Card'
+import { Routes, Route } from 'react-router-dom'
+import ListMoviePage from './page/ListMoviePage'
 
 const App = () => {
     return (
-        <>
-            <div className='flex justify-center'>
-                <div className='text-3xl font-bold underline'>App</div>
-            </div>
-            <Card />
-        </>
+        <Routes>
+            <Route path='/' element={<ListMoviePage />} />
+        </Routes>
     )
 }
 
