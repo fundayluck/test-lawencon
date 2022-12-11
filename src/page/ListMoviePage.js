@@ -57,10 +57,13 @@ const AppPage = () => {
     const filteredMovies = movies.filter
         ? movies.filter(
             (item) =>
-            (item.Title &&
-                item.Title.toLowerCase().includes(title.toLowerCase()))
+                (item.Title &&
+                    item.Title.toLowerCase().includes(title.toLowerCase())) ||
+                (item.Title &&
+                    item.Year.toLowerCase().includes(title.toLowerCase()))
+
         )
-        : [];
+        : []
 
 
 
@@ -69,7 +72,7 @@ const AppPage = () => {
             <h1 className='font-bold text-[50px] mb-2 text-[#F3EFE0] underline'>Batman Movie Collection's</h1>
             <input
                 className='p-2 mb-4 border-2 rounded-md '
-                placeholder='Search by title'
+                placeholder='Search By Title or Year'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
