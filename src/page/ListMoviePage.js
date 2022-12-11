@@ -17,8 +17,6 @@ const AppPage = () => {
         // getListMovieError
     } = useSelector((state) => state.MovieReducer)
 
-    console.log(getListMovieLoading);
-
     const dispatch = useDispatch()
 
     useEffect(() => {

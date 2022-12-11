@@ -1,23 +1,42 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import axios from 'axios'
 import { AiTwotoneStar } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetail } from '../actions/detailAction'
+import Loader from '../components/Loader';
 
 const DetailPage = () => {
     const [detail, setDetail] = useState([])
     const { id } = useParams()
-    console.log(detail);
+
+    const {
+        getDetailMovieResult,
+        getDetailMovieLoading,
+        // getDetailMovieError
+    } = useSelector((state) => state.DetailReducer)
+    console.log(getDetailMovieResult);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getDetail(id))
+    }, [dispatch, id])
 
     useEffect(() => {
         const fetch = async () => {
-            const response = await axios.get(`http://www.omdbapi.com?apikey=715289b&i=${id}`)
-            setDetail(response.data)
+            const response = await getDetailMovieResult
+            setDetail(response)
         }
         fetch()
-    }, [id])
-    return (
-        <div className='flex flex-col mt-5'>
+    }, [getDetailMovieResult])
+
+    let content
+    if (getDetailMovieLoading) {
+        content = <div className='flex items-center content-center h-screen justify-center'>
+            <Loader />
+        </div>
+    } else {
+        content = <div className='flex flex-col mt-5'>
             <NavLink to='/'>
                 <BiArrowBack className='fixed ml-10 text-[50px] text-[#F3EFE0] cursor-pointer' />
             </NavLink>
@@ -67,7 +86,12 @@ const DetailPage = () => {
                 </div>
             </div>
         </div>
-    )
+    }
+
+    return content
+
+
+
 }
 
 export default DetailPage
