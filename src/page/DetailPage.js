@@ -15,7 +15,6 @@ const DetailPage = () => {
         getDetailMovieLoading,
         // getDetailMovieError
     } = useSelector((state) => state.DetailReducer)
-    console.log(getDetailMovieResult);
     const dispatch = useDispatch()
 
     useEffect(() => {
