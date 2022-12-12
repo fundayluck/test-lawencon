@@ -2,7 +2,7 @@ import axios from "axios"
 
 export const GET_MOVIE = 'GET_MOVIE'
 
-export const getMovie = (params) => {
+export const getMovie = (title, page) => {
     return (dispatch) => {
         //loading
         dispatch({
@@ -15,10 +15,11 @@ export const getMovie = (params) => {
         })
 
         //get Api
+        let cancel
         axios({
             method: 'GET',
-            url: `https://www.omdbapi.com?apikey=715289b&s=batman&&page=${params}`,
-            timeout: 120000
+            url: `https://www.omdbapi.com?apikey=715289b&s=${title}&page=${page}`,
+            cancelToken: new axios.CancelToken(c => cancel = c)
         })
             .then((response) => {
                 dispatch({
@@ -31,6 +32,7 @@ export const getMovie = (params) => {
                 })
             })
             .catch((error) => {
+                if (axios.isCancel(error)) return
                 dispatch({
                     type: GET_MOVIE,
                     payload: {
@@ -40,5 +42,6 @@ export const getMovie = (params) => {
                     }
                 })
             })
+        return () => cancel()
     }
 }
