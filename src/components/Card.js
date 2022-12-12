@@ -19,11 +19,10 @@ const Card = ({ movies, lastBookElementRef }) => {
         onClose={handleClose}
     />
 
-    console.log(movies);
 
     let content;
     if (movies.Response === "False") {
-        content = <div className="flex justify-center">{movies.data.Error}</div>
+        content = <div className="flex justify-center text-[#F3EFE0]">{movies.Error}</div>
     } else {
         content = <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {movies.map((movie, index) => {

@@ -6,7 +6,6 @@ export default function useBookSearch(page, title) {
     const [error, setError] = useState(false)
     const [movie, setMovie] = useState([])
     const [hasMore, setHasMore] = useState(false)
-    console.log(loading, error);
     useEffect(() => {
         setMovie([])
     }, [title])
@@ -25,7 +24,7 @@ export default function useBookSearch(page, title) {
                 setMovie(prev => {
                     return [...new Set([...prev, ...res.data.Search.map(b => b)])]
                 })
-            } else if (res.Response === "False") {
+            } else if (res.data.Response === "False") {
                 setLoading(false)
                 setMovie(res.data)
             }
